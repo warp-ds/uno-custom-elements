@@ -1,0 +1,8 @@
+/* Styling that hits a custom element from the moment it exists in dom til it is mounted */
+/* This could be a general purpose utility class that could ship with reset */
+/* Set directly on the custom element <my-card class="custom-element ..."> */
+.custom-element:not(:defined) {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}

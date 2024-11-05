@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://assets.finn.no/pkg/@warp-ds/fonts/v1/finn-no.css" />
+  <link rel="stylesheet" href="https://assets.finn.no/pkg/@warp-ds/css/v2/tokens/finn-no.css" />
+  <link rel="stylesheet" href="https://assets.finn.no/pkg/@warp-ds/css/v2/resets.css" />
+  <link rel="stylesheet" href="./dist/preflights.css">
+  <link rel="stylesheet" href="./dist/light.css">
+  <meta charset="UTF-8">
+  <title>UnoCSS POC</title>
+  <script type="module" src="./dist/components/my-panel/my-panel.js"></script>
+  <script type="module" src="./dist/components/my-card/my-card.js"></script>
+</head>
+<body>
+  <section class="grid grid-cols-2 gap-24 p-24">
+    <my-panel class="custom-element">
+      This is a sample panel content.
+    </my-panel>
+    <my-panel class="custom-element">
+      This is a sample panel content.
+    </my-panel>
+  </section>
+  <my-card class="custom-element">
+    This is a sample card content.
+  </my-card>
+
+</body>
+</html>

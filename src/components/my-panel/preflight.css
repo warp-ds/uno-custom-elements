@@ -1,0 +1,5 @@
+/* There is sometimes need for customizing some stylings for individual components */
+/* Custom stylings pr. component could live in preflights.css next to each component and we could automatically pick them all up and build them into on css that is hooked onto reset, or we could divide it up in any fashion we want  */
+my-panel:not(:defined) {
+  min-width: 50%;
+}

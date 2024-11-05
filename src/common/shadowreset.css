@@ -1,0 +1,59 @@
+/* Stripped down reset */
+*,:before,:after {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+  border-color: var(--w-s-color-border)
+}
+
+:host {
+  font-size: 62.5%;
+  -webkit-tap-highlight-color: transparent;
+  /*font-family: var(--w-font-family);*/
+  font-size: var(--w-font-size-m);
+  line-height: var(--w-line-height-m);
+  color: var(--w-s-color-text)
+}
+
+a {
+  cursor: pointer;
+  color: var(--w-s-color-text-link);
+  text-decoration: none
+}
+
+a:hover,a:focus,a:active {
+  text-decoration: underline
+}
+
+:-moz-focusring {
+  outline: auto
+}
+
+:-moz-ui-invalid {
+  box-shadow: none
+}
+
+::-webkit-inner-spin-button {
+  height: auto
+}
+
+::-webkit-outer-spin-button {
+  height: auto
+}
+
+::-webkit-search-decoration {
+  -webkit-appearance: none
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit
+}
+
+[hidden] {
+  display: none!important
+}
+
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: none
+}

@@ -1,0 +1,22 @@
+{
+  "name": "unocss-poc",
+  "version": "1.0.0",
+  "description": "A POC for UnoCSS with per-component builds",
+  "type": "module",
+  "scripts": {
+    "build:css-prefs": "unocss --config uno.config.preflights.js",
+    "build:css-comps": "unocss --config uno.config.components.js",
+    "build:css-light": "unocss --config uno.config.light.js",
+    "inject:css": "node inject-css.js",
+    "build": "npm run build:css-prefs && npm run build:css-comps && npm run build:css-light && npm run inject:css",
+    "start": "npm run build && npx serve ."
+  },
+  "dependencies": {
+    "@warp-ds/css": "^2.0.0",
+    "@warp-ds/uno": "^2.0.0"
+  },
+  "devDependencies": {
+    "unocss": "^0.63.6"
+  }
+}
+

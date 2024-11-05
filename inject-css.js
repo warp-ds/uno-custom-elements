@@ -1,18 +1,20 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 // Paths
-const componentsDir = './src/components';
-const distDir = './dist/components'; // Output to `dist/components`
+const componentsDir = "./src/components";
+const commonDir = "./src/common";
+const distDir = "./dist"; // Output to `dist/components`
+const distComponentsDir = "./dist/components"; // Output to `dist/components`
 
 // Ensure `dist/components` exists
-if (!fs.existsSync(distDir)) {
-  fs.mkdirSync(distDir, { recursive: true });
+if (!fs.existsSync(distComponentsDir)) {
+  fs.mkdirSync(distComponentsDir, { recursive: true });
 }
 
 // Convert component folder names to kebab-case if needed
 function toKebabCase(name) {
-  return name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  return name.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
 // Function to inject CSS into each component copy in `dist`
@@ -24,37 +26,27 @@ function injectCSS() {
 
   componentFolders.forEach((folder) => {
     const kebabName = toKebabCase(folder);
-    const componentFile = path.join(componentsDir, folder, `${kebabName}.js`);
-    const distComponentDir = path.join(distDir, folder);
+    const componentDir = path.join(componentsDir, folder);
+    const componentFile = path.join(componentDir, `${kebabName}.js`);
+    const componentStyleFile = path.join(componentDir, `styles.js`);
+    const distComponentDir = path.join(distComponentsDir, folder);
     const distComponentFile = path.join(distComponentDir, `${kebabName}.js`);
+    const distComponentStyleFile = path.join(distComponentDir, `styles.js`);
+    const builtComponentCSSPath = path.join(distDir, `${kebabName}.css`);
+    const shadowResetCSSPath = path.join(commonDir, `shadowreset.css`);
 
-    // Ensure the output directory exists
     fs.mkdirSync(distComponentDir, { recursive: true });
-
-    // Copy component file to `dist/components` directory
     fs.copyFileSync(componentFile, distComponentFile);
+    fs.copyFileSync(componentStyleFile, distComponentStyleFile);
 
-    let componentCode = fs.readFileSync(distComponentFile, 'utf8');
+    let styleJSCode = fs.readFileSync(distComponentStyleFile, "utf8");
+    let shadowResetCSS = fs.readFileSync(shadowResetCSSPath, "utf8");
+    let builtComponentCSS = fs.readFileSync(builtComponentCSSPath, "utf8");
 
-    console.log('\x1b[32m%s\x1b[0m', `Building ${distComponentFile}:`);
+    styleJSCode = styleJSCode.replace('@shadowReset;', shadowResetCSS);
+    styleJSCode = styleJSCode.replaceAll('@styles;', builtComponentCSS);
 
-    // Regex to find all @import statements within <style> tags
-    componentCode = componentCode.replace(/<style>([\s\S]*?)<\/style>/g, (match, imports) => {
-      return `<style>${imports.replace(/@import\s+['"](.*?)['"];/g, (importStatement, cssPath) => {
-        const fullPath = path.resolve(cssPath.replace('./src', './dist'));
-        if (fs.existsSync(fullPath)) {
-          const cssContent = fs.readFileSync(fullPath, 'utf8');
-          console.log(`Injecting CSS from ${cssPath} into ${distComponentFile}`);
-          return cssContent; // Replace @import with actual CSS content
-        } else {
-          console.warn(`CSS file not found: ${cssPath}`);
-          return ''; // Remove @import if file not found
-        }
-      })}</style>`;
-    });
-
-    // Write the modified component to the `dist/components` folder
-    fs.writeFileSync(distComponentFile, componentCode, 'utf8');
+    fs.writeFileSync(distComponentStyleFile, styleJSCode, "utf8");
   });
 }
 

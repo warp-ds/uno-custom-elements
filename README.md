@@ -6,7 +6,7 @@ This thing scrapes each component for used classes, generate a component specifi
 
 ## Install and usage
 
-npm i
-npm start
+`npm i`
+`npm start`
 
 components in the src/components structure are regenerated into the dist/components structure.

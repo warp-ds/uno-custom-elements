@@ -160,3 +160,8 @@ The `npm start` command:
 3. Serves the project locally.
 
 Each component file in `dist/components` is now independent, containing all necessary CSS for runtime, with no reliance on UnoCSS.
+
+
+## Further investigation
+Dealing with overriding styles from light DOM. UnoCSS has a built in concept for `::part` selector:  `<custom-element class="part-[header]:p-16"></custom-element>`, 
+this seams to be tightly connected to mode: shadow-dom,  how well this works with the setup in this poc is unclear. 

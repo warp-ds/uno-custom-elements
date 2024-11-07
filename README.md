@@ -1,5 +1,5 @@
 
-# UnoCSS POC
+# UnoCSS on custom-elements POC
 
 This proof-of-concept (POC) demonstrates the use of UnoCSS for generating modular, component-specific CSS files that are injected directly into web components at build time. The objective is to produce standalone, self-contained component files within `dist`, independent of UnoCSS at runtime. In this example the main doc is treated in a similar fashion, but that was just a matter of efficiency setting up the poc, it should rather just be handled as a normal unoCSS setup.
 

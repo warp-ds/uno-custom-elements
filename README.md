@@ -166,5 +166,5 @@ Each component file in `dist/components` is now independent, containing all nece
 
 
 ## Further investigation
-Dealing with overriding styles from light DOM. UnoCSS has a built in concept for `::part` selector:  `<custom-element class="part-[header]:p-16"></custom-element>`, 
-this seams to be tightly connected to mode: shadow-dom,  how well this works with the setup in this poc is unclear. 
+1. Dealing with overriding styles from light DOM. UnoCSS has a built in concept for `::part` selector:  `<custom-element class="part-[header]:p-16"></custom-element>`, this seams to be tightly connected to mode: shadow-dom,  how well this works with the setup in this poc is unclear. 
+2. SSR, this poc is not 100% SSR ready, mainly the components themselves need to be written with lit(?) Doesnt really effect the point of this POC , but still. 

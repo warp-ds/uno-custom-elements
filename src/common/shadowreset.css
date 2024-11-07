@@ -33,23 +33,6 @@ a:hover,a:focus,a:active {
   box-shadow: none
 }
 
-::-webkit-inner-spin-button {
-  height: auto
-}
-
-::-webkit-outer-spin-button {
-  height: auto
-}
-
-::-webkit-search-decoration {
-  -webkit-appearance: none
-}
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit
-}
-
 [hidden] {
   display: none!important
 }

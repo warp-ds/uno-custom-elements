@@ -11,6 +11,9 @@ This proof-of-concept (POC) demonstrates the use of UnoCSS for generating modula
 - **Light DOM and Shadow DOM Preflight Styling**: Preflight styles in the Light DOM prevent FOUC (Flash of Unstyled Content) and provide consistent initial styling across components.
 - **Shadow DOM Reset**: A custom lightweight reset (`shadowreset.css`) provides essential styling to maintain consistency within each component’s Shadow DOM.
 
+## Self containment
+Not demoed by this POC in its current state, but alternatively, each component could support full self-containment by using a `<style>` block within the Shadow DOM to hold its CSS. This would make the component even more modular, encapsulating both HTML and CSS entirely within a single file. This approach could also potentially be configurable, depending on project needs. Some components we know for sure should never be more than once in a page, like header(Not owned by WARP), footer(Not owned by WARP), broadcast(Not owned by WARP), modal(?), these should probably all be self contained. 
+
 ## Project Structure
 
 ```
